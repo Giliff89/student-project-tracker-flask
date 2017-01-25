@@ -43,13 +43,13 @@ def make_new_student(first_name, last_name, github):
     """
 
     QUERY = """
-    INSERT INTO Students 
+    INSERT INTO Students
     VALUES (:first_name, :last_name, :github)
     """
-    
+
     db.session.execute(QUERY, {'first_name': first_name,
-                                'last_name': last_name,
-                                'github': github})
+                               'last_name': last_name,
+                               'github': github})
     db.session.commit()
     print "Successfully added student: %s %s" % (first_name, last_name)
 
@@ -95,8 +95,10 @@ def assign_grade(github, title, grade):
     print "Successfully assigned grade of %s for %s in %s" % (
         grade, github, title)
 
+
 def get_grades_by_github(github):
     """Get a list of all grades for a student by their github username"""
+    
     QUERY = """
         SELECT project_title, grade
         FROM Grades
@@ -108,6 +110,7 @@ def get_grades_by_github(github):
         print "Student %s received grade of %s for project %s" % (
             github, row[1], row[0])
     return rows
+
 
 def get_grades_by_title(title):
     """Get a list of all student grades for a project by its title"""
@@ -166,7 +169,6 @@ def handle_input():
         elif command == "project_grades":
             title = args[0]
             get_grades_by_title(title)
-
 
 
 if __name__ == "__main__":
