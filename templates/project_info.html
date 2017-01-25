@@ -7,5 +7,12 @@
     <h1>Project name: {{ title }}</h1>
     <h3>Project description: {{ description }}</h3>
     <h4>Max Grade: {{ max_grade }}</h4>
+
+    <ul>
+      {% for student in student_grades %}
+        <li>Student Github: <a href='/student?github={{ student[0] }}'>{{ student[0] }}</a> --- Grade: {{ student[1] }}</li>
+      {% endfor %}
+    </ul>
+
   </body>
 </html>
