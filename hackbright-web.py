@@ -80,6 +80,27 @@ def get_project_info():
                            student_grades=student_grades)
 
 
+@app.route("/project-add", methods=['GET'])
+def show_add_project_form():
+    """Shows form to add a new project to the database."""
+
+    return render_template("project_add_form.html")
+
+
+@app.route("/project-add", methods=['POST'])
+def add_project():
+    """Adds new project to database from form"""
+
+    title = request.form.get('title')
+    desc = request.form.get('desc')
+    max_grade = request.form.get('max_grade')
+
+    hackbright.make_new_project(title, desc, max_grade)
+
+    return render_template("added_project.html",
+                           title=title)
+
+
 if __name__ == "__main__":
     hackbright.connect_to_db(app)
     app.run(debug=True)

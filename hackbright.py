@@ -197,6 +197,25 @@ def handle_input():
             get_grades_by_title(title)
 
 
+def make_new_project(title, desc, max_grade):
+    """Add a new project and print confirmation.
+
+    Given a title, description, and max grade, add project to the
+    database and print a confirmation message.
+    """
+
+    QUERY = """
+    INSERT INTO Projects (title, description, max_grade)
+    VALUES (:title, :desc, :max_grade)
+    """
+
+    db.session.execute(QUERY, {'title': title,
+                               'desc': desc,
+                               'max_grade': max_grade})
+    db.session.commit()
+    print "Successfully added project: %s %s" % (title, desc)
+
+
 if __name__ == "__main__":
     app = Flask(__name__)
     connect_to_db(app)
