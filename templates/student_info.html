@@ -11,7 +11,7 @@
     <h3>Projects</h3>
     <ul>
       {% for project in projects %}
-        <li>Project: {{ project[0] }} --- Grade: {{ project[1] }}</li>
+        <li>Project: <a href='/project?title={{ project[0]}}'>{{ project[0] }}</a> --- Grade: {{ project[1] }}</li>
       {% endfor %}
     </ul>
     

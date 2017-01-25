@@ -98,7 +98,7 @@ def assign_grade(github, title, grade):
 
 def get_grades_by_github(github):
     """Get a list of all grades for a student by their github username"""
-    
+
     QUERY = """
         SELECT project_title, grade
         FROM Grades
